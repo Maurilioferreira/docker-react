@@ -1,0 +1,29 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
+
+# -f = file
+# docker build -f Dockerfile.dev .
+
+# docker run -it -p 3000:3000 CONTAINER_ID
+
+# >>> pwd (present working directory)
+# docker run -it -p 3000:3000 -v $(pwd):/app CONTAINER_ID
+# docker run -it -p 3000:3000 -v /app/node_modules -v $(pwd):/app CONTAINER_ID
+
+# >>> test
+# docker run -it CONTAINER_ID npm run test
+# não funciona, se altear o arquivo de test.
+# docker-compose up
+# na segunda aba, roda, ai sim funciona.
+# docker exec -it b7a7d000340b npm run test
+
+# na segunda aba, pode tambem
+# docker exec -it CONTAINER_ID sh
